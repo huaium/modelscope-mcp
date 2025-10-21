@@ -1,0 +1,21 @@
+services:
+  modelscope-mcp:
+    image: modelscope-mcp
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: modelscope-mcp
+    restart: always
+    ports:
+      - "127.0.0.1:8000:8000"
+    ulimits:
+      nofile:
+        soft: 65535
+        hard: 65535
+    networks:
+      - modelscope-mcp-network
+
+networks:
+  modelscope-mcp-network:
+    name: modelscope-mcp-network
+    driver: bridge
